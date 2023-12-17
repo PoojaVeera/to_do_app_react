@@ -1,0 +1,110 @@
+body {
+  font-family: "Exo";
+  margin: 0;
+  padding: 0;
+  background-color: #272727; /* Dark Background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./assets/neon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* width: 100vw;*/
+  height: 100vh;
+}
+.app {
+}
+
+.task-container {
+  width: 50vw;
+  /* margin: 5vw auto; */
+  background-color: #1a1a1a; /* Darker Background */
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+.task-container_1 {
+  width: 50vw;
+  margin: 10vw auto;
+  background-color: #1a1a1a; /* Darker Background */
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  max-height: 37vh;
+  margin-top: 20px;
+  overflow-y: auto;
+}
+
+.robot-title {
+  text-align: center;
+  color: #ffff00;
+}
+
+.task-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.task-input input {
+  color: #ffffff; /* White */
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ff1493; /* Darker Neon Pink */
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.task-input button {
+  padding: 10px 20px;
+  background-color: #ff3399; /* Brighter Neon Pink */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-input button:hover {
+  background-color: #ff0066; /* Darker Neon Pink */
+}
+
+.task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px;
+  border: 1px solid #ff3399; /* Brighter Neon Pink */
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: #ffffff; /* White */
+}
+
+.task-list button {
+  padding: 8px 16px;
+  background-color: #00ffcc; /* Neon Turquoise */
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-list button:hover {
+  background-color: #00cc99; /* Darker Neon Turquoise */
+}
+
+.task-list button {
+  padding: 8px 16px;
+  background-color: #00bfff; /* Bright Neon Blue */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-list button:hover {
+  background-color: #0080ff; /* Darker Neon Blue */
+}
