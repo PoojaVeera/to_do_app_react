@@ -10,6 +10,7 @@ const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [isExploding, setIsExploding] = useState(false);
+  console.log(isExploding);
   const addTask = () => {
     setIsExploding(false);
     if (newTask.trim() !== "") {
