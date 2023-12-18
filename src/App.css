@@ -12,8 +12,6 @@ body {
   /* width: 100vw;*/
   height: 100vh;
 }
-.app {
-}
 
 .task-container {
   width: 50vw;
@@ -35,9 +33,8 @@ body {
   overflow-y: auto;
 }
 
-.robot-title {
-  text-align: center;
-  color: #ffff00;
+.completed {
+  text-decoration: line-through;
 }
 
 .task-input {
@@ -79,32 +76,4 @@ body {
   margin-bottom: 10px;
   border-radius: 8px;
   color: #ffffff; /* White */
-}
-
-.task-list button {
-  padding: 8px 16px;
-  background-color: #00ffcc; /* Neon Turquoise */
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.task-list button:hover {
-  background-color: #00cc99; /* Darker Neon Turquoise */
-}
-
-.task-list button {
-  padding: 8px 16px;
-  background-color: #00bfff; /* Bright Neon Blue */
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.task-list button:hover {
-  background-color: #0080ff; /* Darker Neon Blue */
 }

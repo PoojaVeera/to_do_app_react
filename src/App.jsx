@@ -1,14 +1,17 @@
 // App.js
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { MdOutlineDelete } from "react-icons/md";
+import * as S from "./App.styles";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
-
+  const [isExploding, setIsExploding] = useState(false);
   const addTask = () => {
+    setIsExploding(false);
     if (newTask.trim() !== "") {
       setTasks([...tasks, { text: newTask, completed: false }]);
       setNewTask("");
@@ -16,16 +19,26 @@ const App = () => {
   };
 
   const deleteTask = (index) => {
+    setIsExploding(false);
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
+    setTasks(updatedTasks);
+  };
+  const toggleTask = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index].completed = !updatedTasks[index].completed;
+    if (updatedTasks[index].completed) {
+      setIsExploding(true);
+    } else {
+      setIsExploding(false);
+    }
     setTasks(updatedTasks);
   };
 
   return (
     <div className="app">
-      <div className="meteorite-container"></div>
       <div className="task-container">
-        <h1 className="robot-title">Task Manager</h1>
+        <S.Title>Task Manager</S.Title>
         <div className="task-input">
           <input
             type="text"
@@ -40,8 +53,18 @@ const App = () => {
         <span className="task-list">
           {tasks.map((task, index) => (
             <li key={index}>
-              {task.text}
+              <span
+                style={{ cursor: "pointer" }}
+                className={task.completed ? "completed" : ""}
+                onClick={() => toggleTask(index)}
+              >
+                {task.text}
+              </span>
+              {isExploding && <ConfettiExplosion />}
+
               <MdOutlineDelete
+                color="#00ffcc"
+                style={{ cursor: "pointer" }}
                 onClick={() => deleteTask(index)}
                 size={"20px"}
               />
