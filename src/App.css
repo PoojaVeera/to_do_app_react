@@ -84,7 +84,7 @@ body {
   padding: 20px;
 }
 @media (max-width: 768px) {
-  .task-container {
+  .task-container .task-container_1 {
     width: 80vw; /* Adjusted width for smaller screens */
   }
 }
