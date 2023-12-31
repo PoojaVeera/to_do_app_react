@@ -51,6 +51,8 @@ body {
   border-radius: 8px;
   margin-right: 10px;
   background-color: #3b3b3b;
+  max-width: 300px;
+  width: 70%;
 }
 
 .task-input button {
@@ -84,7 +86,17 @@ body {
   padding: 20px;
 }
 @media (max-width: 768px) {
+  .task-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .task-input button {
+    margin-top: 10px;
+  }
   .task-container .task-container_1 {
-    width: 80vw; /* Adjusted width for smaller screens */
+    width: 100vw; /* Adjusted width for smaller screens */
   }
 }
