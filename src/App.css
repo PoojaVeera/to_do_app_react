@@ -15,7 +15,7 @@ body {
 
 .task-container {
   width: 50vw;
-  /* margin: 5vw auto; */
+  margin: 5vw auto;
   background-color: #1a1a1a; /* Darker Background */
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@ body {
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  max-height: 37vh;
+  max-height: 50vh;
   margin-top: 20px;
   overflow-y: auto;
 }
@@ -77,4 +77,9 @@ body {
   margin-bottom: 10px;
   border-radius: 8px;
   color: #ffffff; /* White */
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation24.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+  background-color: #1a1a1a;
+  border: 1px solid darkslategray;
+  padding: 20px;
 }

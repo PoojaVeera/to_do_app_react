@@ -2,10 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import "./styles/tailwind.css";
 import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import * as S from "./App.styles";
 import ConfettiExplosion from "react-confetti-explosion";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Input,
+} from "@mui/material";
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -15,7 +22,9 @@ const App = () => {
   });
   const [newTask, setNewTask] = useState("");
   const [isExploding, setIsExploding] = useState(false);
-
+  const [editedTaskIndex, setEditedTaskIndex] = useState(null);
+  const [editedTaskText, setEditedTaskText] = useState("");
+  const [dialog, setDialog] = useState(false);
   useEffect(() => {
     // Save tasks to localStorage whenever tasks change
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -46,7 +55,20 @@ const App = () => {
     }
     setTasks(updatedTasks);
   };
-
+  const EditTask = (index) => {
+    setDialog(true);
+    setEditedTaskIndex(index);
+    setEditedTaskText(tasks[index].text);
+  };
+  const updateTaskText = () => {
+    const updatedTasks = [...tasks];
+    updatedTasks[editedTaskIndex].text = editedTaskText;
+    setTasks(updatedTasks);
+    setDialog(false);
+  };
+  const handleClose = () => {
+    setDialog(false); // This will close the dialog when called
+  };
   return (
     <div className="app">
       <div className="task-container">
@@ -73,23 +95,42 @@ const App = () => {
                 {task.text}
               </span>
               {isExploding && <ConfettiExplosion />}
-              <span>
-                <MdOutlineEdit
-                  color="#00ffcc"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => EditTask(index)}
-                  size={"20px"}
-                />
+              <S.rowFlex>
+                {!task.completed && (
+                  <MdOutlineEdit
+                    color="#00ffcc"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => EditTask(index)}
+                    size={"20px"}
+                  />
+                )}
                 <MdOutlineDelete
                   color="#00ffcc"
                   style={{ cursor: "pointer" }}
                   onClick={() => deleteTask(index)}
                   size={"20px"}
                 />
-              </span>
+              </S.rowFlex>
             </li>
           ))}
         </span>
+        {dialog && (
+          <Dialog open={dialog} onClose={handleClose}>
+            <S.Dialog>
+              <DialogTitle>Edit Task</DialogTitle>
+              <DialogContent>
+                <Input
+                  type="text"
+                  value={editedTaskText}
+                  onChange={(e) => setEditedTaskText(e.target.value)} // Corrected this line
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={updateTaskText}>Update</Button>{" "}
+              </DialogActions>
+            </S.Dialog>
+          </Dialog>
+        )}
       </div>
     </div>
   );
