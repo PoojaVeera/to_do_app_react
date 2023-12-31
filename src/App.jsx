@@ -7,10 +7,19 @@ import * as S from "./App.styles";
 import ConfettiExplosion from "react-confetti-explosion";
 
 const App = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    // Retrieve tasks from localStorage if available, otherwise default to an empty array
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
   const [newTask, setNewTask] = useState("");
   const [isExploding, setIsExploding] = useState(false);
-  console.log(isExploding);
+
+  useEffect(() => {
+    // Save tasks to localStorage whenever tasks change
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   const addTask = () => {
     setIsExploding(false);
     if (newTask.trim() !== "") {
@@ -25,6 +34,7 @@ const App = () => {
     updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
   };
+
   const toggleTask = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
