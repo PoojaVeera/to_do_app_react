@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { MdOutlineDelete } from "react-icons/md";
+import "./styles/tailwind.css";
+import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import * as S from "./App.styles";
 import ConfettiExplosion from "react-confetti-explosion";
 
@@ -72,13 +73,20 @@ const App = () => {
                 {task.text}
               </span>
               {isExploding && <ConfettiExplosion />}
-
-              <MdOutlineDelete
-                color="#00ffcc"
-                style={{ cursor: "pointer" }}
-                onClick={() => deleteTask(index)}
-                size={"20px"}
-              />
+              <span>
+                <MdOutlineEdit
+                  color="#00ffcc"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => EditTask(index)}
+                  size={"20px"}
+                />
+                <MdOutlineDelete
+                  color="#00ffcc"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => deleteTask(index)}
+                  size={"20px"}
+                />
+              </span>
             </li>
           ))}
         </span>
