@@ -1,10 +1,11 @@
-// App.js
-
 import React, { useEffect, useState } from "react";
+// styling
 import "./App.css";
-import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
 import * as S from "./App.styles";
-import ConfettiExplosion from "react-confetti-explosion";
+//audio
+import applaud from "./assets/sounds/applause.mp3";
+
+//components
 import {
   Button,
   Dialog,
@@ -13,6 +14,8 @@ import {
   DialogTitle,
   Input,
 } from "@mui/material";
+import { MdOutlineDelete, MdOutlineEdit } from "react-icons/md";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const App = () => {
   const [tasks, setTasks] = useState(() => {
@@ -25,6 +28,22 @@ const App = () => {
   const [editedTaskIndex, setEditedTaskIndex] = useState(null);
   const [editedTaskText, setEditedTaskText] = useState("");
   const [dialog, setDialog] = useState(false);
+  const [completedTasks, setCompletedTasks] = useState([]);
+
+  useEffect(() => {
+    if (completedTasks.length > 0) {
+      // Play applause for each completed task
+      completedTasks.forEach((index) => {
+        const applause = new Audio(applaud);
+        applause.play();
+      });
+
+      // Clear the completed tasks list
+      setCompletedTasks([]);
+    }
+  }, [completedTasks]);
+
+  const applause = new Audio(applaud);
   useEffect(() => {
     // Save tasks to localStorage whenever tasks change
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -48,11 +67,11 @@ const App = () => {
   const toggleTask = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
+
     if (updatedTasks[index].completed) {
-      setIsExploding(true);
-    } else {
-      setIsExploding(false);
+      setCompletedTasks([...completedTasks, index]); // Add the index to the completed tasks list
     }
+
     setTasks(updatedTasks);
   };
   const EditTask = (index) => {
@@ -94,7 +113,7 @@ const App = () => {
               >
                 {task.text}
               </span>
-              {isExploding && <ConfettiExplosion />}
+              {task.completed && <ConfettiExplosion />}
               <S.rowFlex>
                 {!task.completed && (
                   <MdOutlineEdit
