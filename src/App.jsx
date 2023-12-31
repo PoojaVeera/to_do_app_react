@@ -23,7 +23,7 @@ const App = () => {
   const addTask = () => {
     setIsExploding(false);
     if (newTask.trim() !== "") {
-      setTasks([...tasks, { text: newTask, completed: false }]);
+      setTasks([{ text: newTask, completed: false }, ...tasks]);
       setNewTask("");
     }
   };
