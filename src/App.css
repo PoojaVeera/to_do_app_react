@@ -83,3 +83,8 @@ body {
   border: 1px solid darkslategray;
   padding: 20px;
 }
+@media (max-width: 768px) {
+  .task-container {
+    width: 80vw; /* Adjusted width for smaller screens */
+  }
+}
